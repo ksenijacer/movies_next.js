@@ -24,3 +24,9 @@ a {
     background: black;
   }
 }
+
+.h2 {
+  text-align: center;
+  background-color: burlywood;
+  color: brown;
+}
