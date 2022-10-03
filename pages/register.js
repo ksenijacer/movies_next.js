@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../store/auth/slice";
 
-import Router from "next/router";
-
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { selectRegisterError } from "../store/auth/selectors";
@@ -12,17 +10,9 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-import styles from '../styles/App.module.css'
+import styles from "../styles/App.module.css";
 
-const validationSchema = Yup.object({
-  email: Yup.string().email("Invalid email format").required("Required"),
-  password: Yup.string()
-    .min(8, "Password must be 8 characters at least")
-    .required("Required"),
-  name: Yup.string()
-    .max(30, "Must be 30 characters or less")
-    .required("Required"),
-});
+import LOGIN_SCHEMA from "../validation/LoginValidation";
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -32,8 +22,9 @@ export default function Register() {
       name: "",
       email: "",
       password: "",
+      password_confirmation: "",
     },
-    validationSchema: validationSchema,
+    validationSchema: LOGIN_SCHEMA,
     onSubmit: (values) => dispatch(register(values)),
   });
 
@@ -43,7 +34,8 @@ export default function Register() {
       <Form onSubmit={formik.handleSubmit} className={styles.formWrapper}>
         <Form.Group className={styles.group}>
           <Form.Label className={styles.title}>Enter name</Form.Label>
-          <Form.Control className={styles.input}
+          <Form.Control
+            className={styles.input}
             id="name"
             name="name"
             type="text"
@@ -59,7 +51,8 @@ export default function Register() {
         </Form.Group>
         <Form.Group className={styles.group}>
           <Form.Label className={styles.title}>Email address</Form.Label>
-          <Form.Control className={styles.input}
+          <Form.Control
+            className={styles.input}
             id="email"
             name="email"
             type="text"
@@ -75,7 +68,8 @@ export default function Register() {
         </Form.Group>
         <Form.Group className={styles.group}>
           <Form.Label className={styles.title}>Password</Form.Label>
-          <Form.Control className={styles.input}
+          <Form.Control
+            className={styles.input}
             id="password"
             name="password"
             type="password"
@@ -89,8 +83,28 @@ export default function Register() {
             </small>
           )}
         </Form.Group>
-        <Button className={styles.button}
-        variant="success" type="submit" onClick={() => Router.push('/login')}>
+        <Form.Group className={styles.group}>
+          <Form.Label className={styles.title}>
+            Password confirmation
+          </Form.Label>
+          <Form.Control
+            className={styles.input}
+            id="password_confirmation"
+            name="password_confirmation"
+            type="password"
+            placeholder="Password confirmation"
+            value={formik.values.password_confirmation}
+            onChange={formik.handleChange}
+          />
+          {formik.touched.password_confirmation &&
+            formik.errors.password_confirmation && (
+              <small className="form-text text-danger mt-2">
+                {formik.errors.password_confirmation}
+              </small>
+            )}
+        </Form.Group>
+        <br />
+        <Button className={styles.button} variant="success" type="submit">
           Register
         </Button>
         {registerError && (

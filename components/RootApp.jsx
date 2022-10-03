@@ -1,17 +1,17 @@
 import { useEffect } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { selectActiveUser, selectIsAuthenticated } from "../store/auth/selectors"
+import { getActiveUser } from "../store/auth";
+
 
 
 export const RootApp = ({ children }) => {
-    const isAuthenticated = useSelector(selectIsAuthenticated)
-    const user = useSelector(selectActiveUser)
-
+    const dispatch = useDispatch();
+    const isAuthenticated = useSelector(selectIsAuthenticated);
+  
     useEffect(() => {
-        if(isAuthenticated && user) {
-
-        }
-    }, [isAuthenticated, user])
+      isAuthenticated && dispatch(getActiveUser());
+    }, []);
 
     return <>{children}</>
 }

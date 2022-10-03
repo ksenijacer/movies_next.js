@@ -10,14 +10,16 @@ import {
   setLoginError,
 } from "./slice";
 import authService from "../../services/AuthService";
+import Router from "next/router";
 
 function* handleRegister(action) {
   try {
     const { user, token } = yield call(authService.register, action.payload);
     yield put(setToken(token));
     yield put(setActiveUser(user));
+    yield call(Router.push("/login"));
   } catch (error) {
-    if (error.resposne.status == 422) {
+    if (error?.response?.status !== 201) {
       yield put(setRegisterError(true));
     }
   }
@@ -28,8 +30,9 @@ function* handleLogin(action) {
     const { user, token } = yield call(authService.login, action.payload);
     yield put(setToken(token));
     yield put(setActiveUser(user));
+    yield call(Router.push("/movies"));
   } catch (error) {
-    if (error.resposne.status == 401) {
+    if (error?.response?.status == 401) {
       yield put(setLoginError(true));
     }
   }

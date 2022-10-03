@@ -4,7 +4,7 @@ import authService from "../../services/AuthService";
 const middlewareActions = {
   login() {},
   register() {
-    console.log('register')
+    console.log("register");
   },
   logout() {},
   getActiveUser() {},
