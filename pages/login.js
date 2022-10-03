@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/auth/slice";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { selectLoginError } from "../store/auth/selectors";
+import LOGIN_SCHEMA from "../validation/LoginValidation";
 
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -14,16 +15,6 @@ import Router from "next/router";
 
 import styles from "../styles/App.module.css";
 
-const validationSchema = Yup.object({
-  email: Yup.string()
-    .max(50)
-    .email("Invalid email format")
-    .required("Required"),
-  password: Yup.string()
-    .min(8, "Password must be 8 characters at least")
-    .required("Required"),
-});
-
 export default function Login() {
   const dispatch = useDispatch();
   const loginError = useSelector(selectLoginError);
@@ -32,7 +23,7 @@ export default function Login() {
       email: "",
       password: "",
     },
-    validationSchema: validationSchema,
+    validationSchema: LOGIN_SCHEMA,
     onSubmit: (values) => dispatch(login(values)),
   });
 
@@ -74,12 +65,7 @@ export default function Login() {
             </small>
           )}
         </Form.Group>
-        <Button
-          className={styles.loginButton}
-          variant="success"
-          type="submit"
-          onClick={() => Router.push("/profile")}
-        >
+        <Button className={styles.loginButton} variant="success" type="submit">
           Login
         </Button>
         {loginError && (

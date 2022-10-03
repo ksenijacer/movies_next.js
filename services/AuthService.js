@@ -18,7 +18,7 @@ class AuthService extends ApiService {
 
     if (token) {
       this.setAuthHeader();
-      this.api.setUnauthorizedCallback(this.destroySession.bind(this));
+      this.api.setUnauthorizedCallback(this.destroySession);
     }
   };
 
@@ -37,7 +37,7 @@ class AuthService extends ApiService {
 
   createSession = (token) => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("accessToken", data.access);
+      localStorage.setItem("accessToken", token);
     }
   };
 
@@ -50,7 +50,8 @@ class AuthService extends ApiService {
 
   login = async (loginData) => {
     this.destroySession();
-    const { data } = await this.apiClient.post(ENDPOINTS.LOGIN, loginData);
+    const response = await this.apiClient.post(ENDPOINTS.LOGIN, loginData);
+    const data = response.data;
     this.createSession(data);
     this.setAuthHeader(data.accessToken);
     return data;
@@ -59,11 +60,9 @@ class AuthService extends ApiService {
   logout = async () => {
     this.apiClient.post(ENDPOINTS.LOGOUT);
     this.destroySession();
-    this.api.setUnauthorizedCallback(() => {});
   };
 
   register = async (registerData) => {
-    console.log(registerData);
     const { data } = await this.apiClient.post(
       ENDPOINTS.REGISTER,
       registerData
@@ -74,7 +73,6 @@ class AuthService extends ApiService {
   getUser = () => {
     if (typeof window !== "undefined") {
       const user = localStorage.getItem("user");
-      console.log(user);
       return JSON.parse(user);
     }
   };
