@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const REGISTER_SCHEMA = Yup.object({
+const registerSchema = Yup.object({
   email: Yup.string().email("Invalid email format").required("Required"),
   password: Yup.string()
     .min(8, "Password must be 8 characters at least")
@@ -13,4 +13,4 @@ const REGISTER_SCHEMA = Yup.object({
     .required("Required"),
 });
 
-export default REGISTER_SCHEMA;
+export default registerSchema;

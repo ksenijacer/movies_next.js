@@ -12,7 +12,7 @@ import Button from "react-bootstrap/Button";
 
 import styles from "../styles/App.module.css";
 
-import LOGIN_SCHEMA from "../validation/LoginValidation";
+import registerSchema from "../validation/RegisterValidation";
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export default function Register() {
       password: "",
       password_confirmation: "",
     },
-    validationSchema: LOGIN_SCHEMA,
+    validationSchema: registerSchema,
     onSubmit: (values) => dispatch(register(values)),
   });
 

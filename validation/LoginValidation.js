@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const LOGIN_SCHEMA = Yup.object({
+const loginSchema = Yup.object({
   email: Yup.string()
     .max(50)
     .email("Invalid email format")
@@ -10,4 +10,4 @@ const LOGIN_SCHEMA = Yup.object({
     .required("Required"),
 });
 
-export default LOGIN_SCHEMA;
+export default loginSchema;
