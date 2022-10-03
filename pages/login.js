@@ -5,7 +5,6 @@ import { login } from "../store/auth/slice";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { selectLoginError } from "../store/auth/selectors";
-import LOGIN_SCHEMA from "../validation/LoginValidation";
 
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -14,6 +13,7 @@ import Button from "react-bootstrap/Button";
 import Router from "next/router";
 
 import styles from "../styles/App.module.css";
+import loginSchema from "../validation/LoginValidation";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ export default function Login() {
       email: "",
       password: "",
     },
-    validationSchema: LOGIN_SCHEMA,
+    validationSchema: loginSchema,
     onSubmit: (values) => dispatch(login(values)),
   });
 
