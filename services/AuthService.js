@@ -17,7 +17,7 @@ class AuthService extends ApiService {
     const token = this.getToken();
 
     if (token) {
-      this.setAuthHeader();
+      this.setAuthHeader(token);
       this.api.setUnauthorizedCallback(this.destroySession);
     }
   };
@@ -52,8 +52,9 @@ class AuthService extends ApiService {
     this.destroySession();
     const response = await this.apiClient.post(ENDPOINTS.LOGIN, loginData);
     const data = response.data;
-    this.createSession(data);
-    this.setAuthHeader(data.accessToken);
+    this.createSession(data.access_token);
+    this.setAuthHeader(data.access_token);
+
     return data;
   };
 
