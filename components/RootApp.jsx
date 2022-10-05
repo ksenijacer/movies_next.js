@@ -11,7 +11,7 @@ export const RootApp = ({ children }) => {
   
     useEffect(() => {
       isAuthenticated && dispatch(getActiveUser());
-    }, []);
+    }, [isAuthenticated, dispatch]);
 
     return <>{children}</>
 }

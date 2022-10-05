@@ -1,10 +1,9 @@
 .h2 {
-    background-color: lightblue;
-    color: darkcyan;
-    text-align: center;
-    font-size: 35px;
-    display: block;
-
+  background-color: lightblue;
+  color: darkcyan;
+  text-align: center;
+  font-size: 35px;
+  display: block;
 }
 
 .title {
@@ -15,56 +14,54 @@
   font-size: 16px;
   display: block;
   font-size: 20px;
-
 }
 
-.input { 
-    display: inline-block;
-    width: 20em;
-    text-align: left;
-    margin: 8px;
-    padding: 10px;    
-    overflow: hidden;
-    font-size: 15px;
-
-} 
+.input {
+  display: inline-block;
+  width: 20em;
+  text-align: left;
+  margin: 8px;
+  padding: 10px;
+  overflow: hidden;
+  font-size: 15px;
+}
 
 .group {
-    color: darkcyan;
-    text-align: center;
-    display:block;
-    
+  color: darkcyan;
+  text-align: center;
+  display: block;
 }
 
 .button {
-    text-align: center;
-    font-size: 17px;
-    border: 1px solid blue;
-    height: 40px;
-    width: 150px;
-    background-color: rgb(7, 23, 255);
-    display: block;
-    align-items: center;
-    align-self: center;
-    margin: 10px;
-    color: white;
-    border-radius: 5px;
+  text-align: center;
+  font-size: 17px;
+  border: 1px solid blue;
+  height: 60px;
+  width: 150px;
+  background-color: rgb(7, 23, 255);
+  display: block;
+  align-items: center;
+  align-self: center;
+  margin: px;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 .loginButton {
-    text-align: center;
-    font-size: 17px;
-    border: 1px solid blue;
-    padding-left: 10px;
-    height: 40px;
-    width: 150px;
-    background-color: rgb(7, 23, 255);
-    display: block;
-    align-self: center;
-    align-items: center;
-    margin: 10px;
-    color: white;
-    border-radius: 5px;
+  text-align: center;
+  font-size: 17px;
+  border: 1px solid blue;
+  padding-left: 10px;
+  height: 40px;
+  width: 150px;
+  background-color: rgb(7, 23, 255);
+  display: block;
+  align-self: center;
+  align-items: center;
+  margin: 10px;
+  color: white;
+  border-radius: 5px;
 }
 
 .formWrapper {
@@ -72,4 +69,59 @@
   flex-direction: column;
   height: 500px;
   padding: 30px;
+}
+
+.navbar {
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: darkcyan;
+  overflow: hidden;
+  background-color: rgb(221, 251, 255);
+}
+
+.liNavbar {
+  flex-direction: column;
+  align-items: center;
+  display: inline-flex;
+  padding: 0px;
+  margin: 5px;
+  font-size: 17px;
+  list-style-type: none;
+  overflow: hidden;
+  text-decoration: none;
+  color: darkgreen;
+}
+
+.liNavbar a {
+  text-decoration: none;
+  color: darkgreen;
+}
+
+.liNavbar a:hover {
+  background-color: #157347;
+  color: white;
+  padding: 8px;
+  border-radius: 7px;
+}
+
+.logoutButton {
+  border: 1px solid rgb(0, 0, 0);
+  padding-left: 10px;
+  height: 35px;
+  width: 90px;
+  background-color: #157347;
+  border-radius: 7px;
+  color: white;
+  font-size: 17px;
+}
+
+.moviesComponent {
+  align-self: center;
+  text-align: center;
+  position: center;
+  margin-left: 20px;
 }

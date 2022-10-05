@@ -126,4 +126,8 @@
   .logo img {
     filter: invert(1);
   }
+  .card-title {
+    text-decoration: none;
+  }
 }
+
