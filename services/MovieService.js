@@ -2,21 +2,27 @@ import ApiService from "./ApiService";
 
 const ENDPOINTS = {
   MOVIES: "/api/movies/",
+  GENRES: "/api/genres",
 };
 
 class MovieService extends ApiService {
-  getMovies = async () => {
-    const { data } = await this.apiClient.get(`/api/movies/`);
+  getMovies = async (page) => {
+    const { data } = await this.apiClient.get(`${ENDPOINTS.MOVIES}`);
     return data;
   };
 
   getMovie = async (id) => {
-    const { data } = await this.apiClient.get(`api/movies/${id}`);
+    const { data } = await this.apiClient.get(`${ENDPOINTS.MOVIES}/${id}`);
     return data;
   };
 
   createMovie = async (payload) => {
-    const { data } = await this.apiClient.post(`/api/movies/`, payload);
+    const { data } = await this.apiClient.post(`${ENDPOINTS.MOVIES}`, payload);
+    return data;
+  };
+
+  getGenres = async () => {
+    const { data } = await this.apiClient.get(`${ENDPOINTS.GENRES}`);
     return data;
   };
 }
