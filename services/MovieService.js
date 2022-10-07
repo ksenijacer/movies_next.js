@@ -1,12 +1,19 @@
 import ApiService from "./ApiService";
 
 const ENDPOINTS = {
-  MOVIES: "/api/movies/",
+  MOVIES: "/api/movies",
   GENRES: "/api/genres",
 };
 
 class MovieService extends ApiService {
   getMovies = async (page) => {
+    console.log;
+    if (page) {
+      const { data } = await this.apiClient.get(
+        `${ENDPOINTS.MOVIES}` + `?page=${page}`
+      );
+      return data;
+    }
     const { data } = await this.apiClient.get(`${ENDPOINTS.MOVIES}`);
     return data;
   };
