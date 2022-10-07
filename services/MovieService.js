@@ -7,7 +7,6 @@ const ENDPOINTS = {
 
 class MovieService extends ApiService {
   getMovies = async (page) => {
-    console.log;
     if (page) {
       const { data } = await this.apiClient.get(
         `${ENDPOINTS.MOVIES}` + `?page=${page}`
