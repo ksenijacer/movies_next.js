@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { MOVIE_GENRES } from "./movieGenres";
 import styles from "../styles/App.module.css";
 import Link from "next/link";
 

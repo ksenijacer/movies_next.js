@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMovie } from "../../store/movies/selectors";
 import { getMovie } from "../../store/movies/slice";
-import { MOVIE_GENRES } from "../../components/movieGenres";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useCallback } from "react";
@@ -30,7 +29,7 @@ function SingleMoviePage() {
               <p>Description: {movie.description}</p>
               <p>
                 Genre:
-                {movie.genres.map((genre, index, genres) =>
+                {movie.genres?.map((genre, index, genres) =>
                   index + 1 === genres.length
                     ? " " + genre.type
                     : ` ${genre.type}, `

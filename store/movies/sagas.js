@@ -1,21 +1,30 @@
-import { put, call, takeLatest } from "redux-saga/effects";
+import { put, call, takeLatest, select } from "redux-saga/effects";
 import {
   getMovie,
   getMovies,
   setMovie,
   setMovies,
   createMovie,
-  setCreateErrors,
   setNewMoviesList,
+  appendMovies,
+  getGenres,
+  setGenres,
+  setCurrentPage,
 } from "./slice";
 import movieService from "../../services/MovieService";
-import Router from "next/router";
 
 function* handleGetMovies({ payload }) {
   try {
-    const movies = yield call(movieService.getMovies, payload);
-    yield put(setMovies(movies));
-    console.log(movies);
+    const response = yield call(movieService.getMovies, payload);
+    if (response) {
+      if (payload > 1) {
+        yield put(setCurrentPage(response.current_page));
+        yield put(appendMovies(response.data));
+      } else {
+        yield put(setCurrentPage(payload));
+        yield put(setMovies(response.data));
+      }
+    }
   } catch (error) {
     alert(error.message);
   }
@@ -39,6 +48,15 @@ function* handleCreateMovie(action) {
   }
 }
 
+function* handleGetGenres(action) {
+  try {
+    const genres = yield call(movieService.getGenres, action.payload);
+    yield put(setGenres(genres));
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
 export function* watchGetMovies() {
   yield takeLatest(getMovies.type, handleGetMovies);
 }
@@ -49,4 +67,8 @@ export function* watchGetMovie() {
 
 export function* watchCreateMovie() {
   yield takeLatest(createMovie.type, handleCreateMovie);
+}
+
+export function* watchgetGenres() {
+  yield takeLatest(getGenres.type, handleGetGenres);
 }

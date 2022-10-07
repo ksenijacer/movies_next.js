@@ -29,9 +29,14 @@ export default function Navbar() {
           </Link>
         </li>
         {isAuthenticated ? (
-          <button onClick={handleLogout} className={styles.logoutButton}>
-            Logout
-          </button>
+          <>
+            <li className={styles.liNavbar}>
+              <Link href="/create-movie">Create movie</Link>
+            </li>
+            <button onClick={handleLogout} className={styles.logoutButton}>
+              Logout
+            </button>
+          </>
         ) : (
           <>
             <li className={styles.liNavbar}>
