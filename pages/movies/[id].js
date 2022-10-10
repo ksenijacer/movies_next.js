@@ -39,7 +39,7 @@ function SingleMoviePage() {
                 src={movie.image_url}
                 alt="Movie picture"
                 width={250}
-                height={150}
+                height={250}
               />
             </div>
             <div>
