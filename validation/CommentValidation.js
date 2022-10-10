@@ -1,0 +1,9 @@
+import * as Yup from "yup";
+
+const commentSchema = Yup.object({
+  content: Yup.string()
+    .max(500, "Comment must be 500 characters or less!")
+    .required("You can't post an empty comment!"),
+});
+
+export default commentSchema;

@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectMovie } from "../../store/movies/selectors";
 import { getMovie } from "../../store/movies/slice";
 import { useRouter } from "next/router";
-import Image from "next/image";
-import { useCallback } from "react";
+import Comment from "../../components/Comment";
 
 function SingleMoviePage() {
   const router = useRouter();
@@ -24,7 +23,7 @@ function SingleMoviePage() {
       {movie && (
         <div className="row mb-4">
           <div className="col-12">
-            <div className="card h-100" style={{ width: "500px", margin: 5 }}>
+            <div className="card h-30" style={{ width: "500px", margin: 5 }}>
               <p>Movie title: {movie.title}</p>
               <p>Description: {movie.description}</p>
               <p>
@@ -42,6 +41,9 @@ function SingleMoviePage() {
                 width={250}
                 height={150}
               />
+            </div>
+            <div>
+              <Comment movie={movie} />
             </div>
           </div>
         </div>

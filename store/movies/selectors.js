@@ -13,3 +13,7 @@ export function selectMovieGenres(state) {
 export function selectCurrentPage(state) {
   return state.movies.current_page;
 }
+
+export function selectMovieComments(state) {
+  return state.movies.comments;
+}
