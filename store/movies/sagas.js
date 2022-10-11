@@ -10,6 +10,11 @@ import {
   getGenres,
   setGenres,
   setCurrentPage,
+  setNewComment,
+  getComment,
+  setComment,
+  setCommentsCount,
+  addComment,
 } from "./slice";
 import movieService from "../../services/MovieService";
 
@@ -57,6 +62,29 @@ function* handleGetGenres(action) {
   }
 }
 
+function* handleMovieComment({ payload }) {
+  try {
+    const data = yield call(
+      movieService.addComment,
+      payload.id,
+      payload.content
+    );
+    yield put(setNewComment([data]));
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+function* handleCommentsGet(action) {
+  try {
+    const data = yield call(movieService.getComment, action.payload);
+    yield put(setComment(data));
+    yield;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 export function* watchGetMovies() {
   yield takeLatest(getMovies.type, handleGetMovies);
 }
@@ -71,4 +99,12 @@ export function* watchCreateMovie() {
 
 export function* watchgetGenres() {
   yield takeLatest(getGenres.type, handleGetGenres);
+}
+
+export function* watchMovieComment() {
+  yield takeLatest(addComment.type, handleMovieComment);
+}
+
+export function* watchCommentGet() {
+  yield takeLatest(getComment.type, handleCommentsGet);
 }

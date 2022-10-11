@@ -4,7 +4,9 @@ const middlewareActions = {
   getMovies() {},
   getMovie() {},
   createMovie() {},
-  getGenres: () => {},
+  getGenres() {},
+  getComment() {},
+  addComment() {},
 };
 
 const moviesSlice = createSlice({
@@ -14,6 +16,9 @@ const moviesSlice = createSlice({
     movies: [],
     genres: [],
     current_page: 1,
+    title: null,
+    comments: [],
+    commentsCount: 0,
   },
   reducers: {
     setMovies(state, action) {
@@ -34,6 +39,18 @@ const moviesSlice = createSlice({
     setGenres(state, action) {
       state.genres = action.payload;
     },
+    setSearchTitle(state, action) {
+      state.title = action.payload;
+    },
+    setComment(state, action) {
+      state.comments = action.payload;
+    },
+    setNewComment(state, { payload }) {
+      state.comments = [...state.comments, ...payload];
+    },
+    setCommentsCount(state, action) {
+      state.comments = action.payload;
+    },
 
     ...middlewareActions,
   },
@@ -49,7 +66,12 @@ export const {
   setCurrentPage,
   setNewMoviesList,
   getGenres,
+  getComment,
   setGenres,
+  setComment,
+  setNewComment,
+  setCommentsCount,
+  addComment,
 } = moviesSlice.actions;
 
 export default moviesSlice.reducer;
