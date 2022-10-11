@@ -5,6 +5,7 @@ import { selectMovie } from "../../store/movies/selectors";
 import { getMovie } from "../../store/movies/slice";
 import { useRouter } from "next/router";
 import Comment from "../../components/Comment";
+import Visited from "../../components/Visited";
 
 function SingleMoviePage() {
   const router = useRouter();
@@ -41,6 +42,9 @@ function SingleMoviePage() {
                 width={250}
                 height={250}
               />
+            </div>
+            <div>
+              <Visited movie={movie} />
             </div>
             <div>
               <Comment movie={movie} />
