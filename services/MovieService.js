@@ -6,14 +6,16 @@ const ENDPOINTS = {
 };
 
 class MovieService extends ApiService {
-  getMovies = async (page) => {
-    if (page) {
-      const { data } = await this.apiClient.get(
-        `${ENDPOINTS.MOVIES}` + `?page=${page}`
-      );
-      return data;
+  getMovies = async ({ page, search }) => {
+    const currentPage = page ?? 1;
+    const params = new URLSearchParams();
+    params.set("page", currentPage);
+    if (search) {
+      params.set("search", search);
     }
-    const { data } = await this.apiClient.get(`${ENDPOINTS.MOVIES}`);
+    const { data } = await this.apiClient.get(
+      `${ENDPOINTS.MOVIES}` + `?${params.toString()}`
+    );
     return data;
   };
 

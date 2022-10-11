@@ -14,9 +14,7 @@ import Router from "next/router";
 
 function* handleRegister(action) {
   try {
-    const { user, token } = yield call(authService.register, action.payload);
-    yield put(setToken(token));
-    yield put(setActiveUser(user));
+    yield call(authService.register, action.payload);
     yield call(Router.push("/login"));
   } catch (error) {
     if (error?.response?.status !== 201) {
@@ -27,8 +25,11 @@ function* handleRegister(action) {
 
 function* handleLogin(action) {
   try {
-    const { user, token } = yield call(authService.login, action.payload);
-    yield put(setToken(token));
+    const { user, access_token } = yield call(
+      authService.login,
+      action.payload
+    );
+    yield put(setToken(access_token));
     yield put(setActiveUser(user));
     yield call(Router.push("/movies"));
   } catch (error) {
