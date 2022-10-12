@@ -13,8 +13,8 @@ import {
   setNewComment,
   getComment,
   setComment,
-  setCommentsCount,
   addComment,
+  setSearchTitle,
 } from "./slice";
 import movieService from "../../services/MovieService";
 

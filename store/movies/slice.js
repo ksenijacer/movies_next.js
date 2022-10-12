@@ -18,7 +18,6 @@ const moviesSlice = createSlice({
     current_page: 1,
     title: null,
     comments: [],
-    commentsCount: 0,
   },
   reducers: {
     setMovies(state, action) {
@@ -39,17 +38,14 @@ const moviesSlice = createSlice({
     setGenres(state, action) {
       state.genres = action.payload;
     },
-    setSearchTitle(state, action) {
-      state.title = action.payload;
-    },
     setComment(state, action) {
       state.comments = action.payload;
     },
     setNewComment(state, { payload }) {
       state.comments = [...state.comments, ...payload];
     },
-    setCommentsCount(state, action) {
-      state.comments = action.payload;
+    setSearchTitle(state, action) {
+      state.title = action.payload;
     },
 
     ...middlewareActions,
@@ -70,8 +66,8 @@ export const {
   setGenres,
   setComment,
   setNewComment,
-  setCommentsCount,
   addComment,
+  setSearchTitle,
 } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

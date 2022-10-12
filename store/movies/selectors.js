@@ -17,3 +17,7 @@ export function selectCurrentPage(state) {
 export function selectMovieComments(state) {
   return state.movies.comments;
 }
+
+export function selectSearchTitle(state) {
+  return state.movies.title;
+}
